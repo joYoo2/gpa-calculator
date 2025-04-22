@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>GPA Calculator</title>
         <style>
             /* === COLOR CUSTOMIZATION POINTS === */
@@ -11,13 +12,29 @@
             /* h1 { color: #003366; } */
 
             /* Change the box background and border color for each year */
-            /* .year-box { background-color: #fffbe6; border-color: #ffd700; } */
+            /* .year-box {
+  border: 1px solid #ccc;
+  padding: 15px;
+  flex: 1 1 45%;
+  max-width: 45%;
+  background: #f9f9f9;
+  box-sizing: border-box;
+} */
 
             /* Change table header background */
             /* th { background-color: #e0e0ff; } */
 
             /* Change button appearance */
-            /* button { background-color: #007bff; color: white; border: none; } */
+            /* button {
+  padding: 6px 10px;
+  font-size: 13px;
+  margin-top: 8px;
+  display: inline-block;
+  width: fit-content;
+  max-width: 140px;
+  box-sizing: border-box;
+  white-space: nowrap;
+} */
 
             /* Change result box appearance */
             /* #result { color: #2a7b2a; } */
@@ -32,22 +49,19 @@
                 margin-top: 20px;
             }
             .container {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 20px;
-            }
-            .year-box {
-                border: 1px solid #ccc;
-                padding: 15px;
-                width: auto;
-                background: #f9f9f9;
-            }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+          
             table {
-                width: auto;
-                margin-bottom: 10px;
-                border-collapse: collapse;
-                table-layout: auto;
-            }
+    width: 100%;
+    margin-bottom: 10px;
+    border-collapse: collapse;
+    table-layout: auto;
+    box-sizing: border-box;
+  }
             th, td {
                 border: 1px solid #ccc;
                 font-size: 13px;
@@ -57,19 +71,26 @@
                 height: 30px;
             }
             input[type="text"] {
-                width: 120px;
-                height: auto;
-            }
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  box-sizing: border-box;
+}
             input.credits {
-                width: 60px;
-                height: auto;
-            }
+  width: 100%;
+  max-width: 80px;
+  height: auto;
+  box-sizing: border-box;
+  -moz-appearance: textfield;
+}
             input, select {
-                font-size: 13px;
-                padding: 1px 3px;
-                height: 26px;
-                width: auto;
-            }
+  font-size: 13px;
+  padding: 1px 3px;
+  height: 26px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+}
             button {
                 padding: 6px 12px;
                 font-size: 13px;
@@ -87,9 +108,114 @@
                 background-color: #eef;
                 border: 1px solid #99c;
             }
-        </style>
+        @media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+
+  table {
+    width: 100%;
+    margin-bottom: 10px;
+    border-collapse: collapse;
+    table-layout: auto;
+    box-sizing: border-box;
+  }
+
+  input, select {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  button {
+    width: auto;
+    max-width: 140px;
+  }
+}
+
+  table {
+    width: 100%;
+    margin-bottom: 10px;
+    border-collapse: collapse;
+    table-layout: auto;
+    box-sizing: border-box;
+  }
+
+  input, select {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  button {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+
+
+  table {
+    width: 100%;
+    margin-bottom: 10px;
+    border-collapse: collapse;
+    table-layout: auto;
+    box-sizing: border-box;
+  }
+
+  input, select {
+  font-size: 13px;
+  padding: 1px 3px;
+  height: 26px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+}
+
+
+
+  table {
+    width: 100%;
+    margin-bottom: 10px;
+    border-collapse: collapse;
+    table-layout: auto;
+    box-sizing: border-box;
+  }
+
+  input, select, button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+.year-box {
+  width: 100%;
+  max-width: 420px;
+  margin: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.details {
+  cursor: pointer;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+@media (min-width: 700px) {
+  .year-box {
+    flex: 0 1 calc(50% - 40px);
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+</style>
     </head>
-    <body>
+    <body style="max-width: 900px; margin: auto; padding: 40px;">
         <h1>Jo Yoo's GPA Calculator</h1>
         <p>
             Welcome to Joseph Yoo's GPA Calculator for Glen Rock High School.
@@ -99,7 +225,7 @@
             Gym and Health do not count towards GPA.
         </p>
 
-        <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px;">
+        <div style="display: flex; gap: 6px; align-items: flex-start; justify-content: flex-start; margin-bottom: 10px; flex-wrap: nowrap;">
             <button onclick="exportData()">Export Data</button>
             <button onclick="document.getElementById('fileInput').click()">Import Data</button>
             <input type="file" id="fileInput" style="display: none;" onchange="importData()" />
@@ -399,11 +525,12 @@
             document.getElementById("isSemester").addEventListener("change", generateFinalGradeInputs);
 
             function generateFinalGradeInputs() {
-                const container = document.getElementById("grade-inputs");
-                container.innerHTML = "";
-                const isAP = document.getElementById("isAP").checked;
-                const isSemester = document.getElementById("isSemester").checked;
-                let labels = [];
+    const container = document.getElementById("grade-inputs");
+    const previousValues = Array.from(container.querySelectorAll("select")).map(select => select.value);
+    container.innerHTML = "";
+    const isAP = document.getElementById("isAP").checked;
+    const isSemester = document.getElementById("isSemester").checked;
+    let labels = [];
 
                 if (isAP && isSemester) {
                     labels = ["Half 1", "Half 2"];
@@ -415,13 +542,14 @@
                     labels = ["MP1", "MP2", "MP3", "MP4", "Final"];
                 }
 
-                labels.forEach(label => {
-                    const div = document.createElement("div");
-                    div.innerHTML = `<label style="display: flex; align-items: center; gap: 5px;">${label}: <select>
-    <option value="">--</option>
-    ${["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"].map(opt => `<option value="${opt}">${opt}</option>`).join("")}
-</select></label>`;
-                    container.appendChild(div);
+                labels.forEach((label, index) => {
+    const div = document.createElement("div");
+    const value = previousValues[index] || "";
+    div.innerHTML = `<label style="display: flex; align-items: center; gap: 5px;">${label}: <select>
+        <option value="">--</option>
+        ${["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"].map(opt => `<option value="${opt}" ${opt === value ? 'selected' : ''}>${opt}</option>`).join("")}
+    </select></label>`;
+    container.appendChild(div);
                 });
             }
 
