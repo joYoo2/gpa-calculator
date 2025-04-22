@@ -1,348 +1,431 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>GPA Calculator</title>
-  <style>
-    /* === COLOR CUSTOMIZATION POINTS === */
-    /* Change background color of the entire page here */
-    /* body { background-color: #f0f0f0; } */
+    <head>
+        <title>GPA Calculator</title>
+        <style>
+            /* === COLOR CUSTOMIZATION POINTS === */
+            /* Change background color of the entire page here */
+            /* body { background-color: #f0f0f0; } */
 
-    /* Change the title color */
-    /* h1 { color: #003366; } */
+            /* Change the title color */
+            /* h1 { color: #003366; } */
 
-    /* Change the box background and border color for each year */
-    /* .year-box { background-color: #fffbe6; border-color: #ffd700; } */
+            /* Change the box background and border color for each year */
+            /* .year-box { background-color: #fffbe6; border-color: #ffd700; } */
 
-    /* Change table header background */
-    /* th { background-color: #e0e0ff; } */
+            /* Change table header background */
+            /* th { background-color: #e0e0ff; } */
 
-    /* Change button appearance */
-    /* button { background-color: #007bff; color: white; border: none; } */
+            /* Change button appearance */
+            /* button { background-color: #007bff; color: white; border: none; } */
 
-    /* Change result box appearance */
-    /* #result { color: #2a7b2a; } */
+            /* Change result box appearance */
+            /* #result { color: #2a7b2a; } */
 
-    /* Change summary background */
-    /* #summary { background-color: #e6f7ff; border-color: #91d5ff; } */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-     
-      
-    }
-    h1, h2 {
-      margin-top: 20px;
-    }
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .year-box {
-      border: 1px solid #ccc;
-      padding: 15px;
-      width: auto;
-      background: #f9f9f9;
-    }
-    table {
-      width: auto;
-      margin-bottom: 10px;
-      border-collapse: collapse;
-      table-layout: auto;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      font-size: 13px;
-      text-align: left;
-      vertical-align: middle;
-      padding: 1px 4px;
-      height: 30px;
-    }
-    input[type="text"] {
-      width: 120px;
-      height: auto;
-    }
-    input.credits {
-      width: 60px;
-      height: auto;
-    }
-    input, select {
-      font-size: 13px;
-      padding: 1px 3px;
-      height: 26px;
-      width: auto;
-    }
-    button {
-      padding: 6px 12px;
-      font-size: 13px;
-      margin-top: 8px;
-      display: inline-block;
-    }
-    #result {
-      font-weight: bold;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    #summary {
-      margin-top: 20px;
-      padding: 10px;
-      background-color: #eef;
-      border: 1px solid #99c;
-    }
-  </style>
-</head>
-<body>
-  <h1>Jo Yoo's GPA Calculator</h1>
-  <p>Welcome to Joseph Yoo's GPA Calculator for Glen Rock High School.
-To begin, enter your final letter grade, the number of credits earned per course, and the course level. At Glen Rock High School, full-year classes are typically worth 5 credits, while semester-long courses are worth 2.5. Science courses (non-AP) carry 6 credits due to the inclusion of a lab component, and AP science courses are valued at 7 credits. Gym and Health do not count towards GPA.</p>
+            /* Change summary background */
+            /* #summary { background-color: #e6f7ff; border-color: #91d5ff; } */
+            body {
+                font-family: Arial, sans-serif;
+                margin: 40px;
+            }
+            h1, h2 {
+                margin-top: 20px;
+            }
+            .container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            .year-box {
+                border: 1px solid #ccc;
+                padding: 15px;
+                width: auto;
+                background: #f9f9f9;
+            }
+            table {
+                width: auto;
+                margin-bottom: 10px;
+                border-collapse: collapse;
+                table-layout: auto;
+            }
+            th, td {
+                border: 1px solid #ccc;
+                font-size: 13px;
+                text-align: left;
+                vertical-align: middle;
+                padding: 1px 4px;
+                height: 30px;
+            }
+            input[type="text"] {
+                width: 120px;
+                height: auto;
+            }
+            input.credits {
+                width: 60px;
+                height: auto;
+            }
+            input, select {
+                font-size: 13px;
+                padding: 1px 3px;
+                height: 26px;
+                width: auto;
+            }
+            button {
+                padding: 6px 12px;
+                font-size: 13px;
+                margin-top: 8px;
+                display: inline-block;
+            }
+            #result {
+                font-weight: bold;
+                font-size: 16px;
+                margin-top: 10px;
+            }
+            #summary {
+                margin-top: 20px;
+                padding: 10px;
+                background-color: #eef;
+                border: 1px solid #99c;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Jo Yoo's GPA Calculator</h1>
+        <p>
+            Welcome to Joseph Yoo's GPA Calculator for Glen Rock High School.
+            To begin, enter your final letter grade, the number of credits earned per course, and the course level.
+            At Glen Rock High School, full-year classes are typically worth 5 credits, while semester-long courses are worth 2.5.
+            Science courses (non-AP) carry 6 credits due to the inclusion of a lab component, and AP science courses are valued at 7 credits.
+            Gym and Health do not count towards GPA.
+        </p>
 
-  <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px;">
-    <button onclick="exportData()">Export Data</button>
-    <button onclick="document.getElementById('fileInput').click()">Import Data</button>
-    <input type="file" id="fileInput" style="display: none;" onchange="importData()" />
-  </div>
+        <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px;">
+            <button onclick="exportData()">Export Data</button>
+            <button onclick="document.getElementById('fileInput').click()">Import Data</button>
+            <input type="file" id="fileInput" style="display: none;" onchange="importData()" />
+        </div>
 
-  <div class="container" id="year-sections"></div>
+        <div class="container" id="year-sections"></div>
 
-  <button id="calculate">Calculate GPA</button>
-  <p id="result">Your GPA will appear here.</p>
+        <button id="calculate">Calculate GPA</button>
+        <p id="result">Your GPA will appear here.</p>
 
-  <div id="summary"></div>
+        <div id="summary"></div>
 
-  <!-- =========== GPA EXPLAINER (with AP / Honors / CP weighting) =========== -->
-<section id="gpa-explainer">
-  <h2>How GPA is Calculated</h2>
+        <!-- Final Grade Calculator Section -->
+        <div id="final-grade-calc" style="margin-top: 40px;">
+            <h2>Final Grade Calculator</h2>
+            <label style="display: inline-flex; align-items: center; gap: 5px;"><input type="checkbox" id="isAP"> AP</label>
+            <label style="display: inline-flex; align-items: center; gap: 5px;"><input type="checkbox" id="isSemester"> Semester</label>
 
-  <!-- ========== GRADING SYSTEM (Glen Rock format) ========== -->
-<section id="gpa-explainer">
-  <h2 style="color:#800; margin-bottom:4px;">GRADING SYSTEM</h2>
+            <div id="grade-inputs" style="margin-top: 10px;"></div>
+            <button onclick="calculateFinalGrade()">Calculate Final Grade</button>
+            <p id="final-grade-result"></p>
+        </div>
 
-  <!-- 1. Letter grades offered -->
-  <p style="margin:4px 0;">
-    The grading system consists of thirteen letter grades: &nbsp;
-    A+, A, A‑, B+, B, B‑, C+, C, C‑, D+, D, D‑, F
-  </p>
+        <section id="gpa-explainer">
+            <h2>How GPA is Calculated</h2>
 
-  <!-- 2. Percent equivalents (column layout) -->
-  <p style="margin:4px 0;">The following percentage equivalents apply in every department:</p>
-  <ul class="percent-scale">
-    <li>A+ 97 and up</li>  <li>A  93 – 96</li>  <li>A‑ 90 – 92</li>  <li>B+ 87 – 89</li> <li>B  83 – 86</li> <li>B‑ 80 – 82</li> <li>C+ 77 – 79</li> <li>C  73 – 76</li> <li>C‑ 70 – 72</li <li>D+ 67 – 69</li> <li>D  63 – 66</li> <li>D‑ 60 – 62</li> <li>F  59 and below</li>
+            <h2 style="color:#800; margin-bottom:4px;">GRADING SYSTEM</h2>
 
-  </ul>
+            <p style="margin:4px 0;">
+                The grading system consists of thirteen letter grades:
+                A+, A, A‑, B+, B, B‑, C+, C, C‑, D+, D, D‑, F
+            </p>
 
-  <!-- 3. Letter‑to‑GPA text (no table) -->
-  <p style="margin:4px 0;">
-    For GPA computation, these letter grades convert to grade‑point values:<br>
-    A+ 4.3, A 4.0, A‑ 3.7, B+ 3.3, B 3.0, B‑ 2.7, C+ 2.3, C 2.0, C‑ 1.7, D+ 1.3, D 1.0, D‑ 0.7, F 0.0.
-  </p>
+            <p style="margin:4px 0;">The following percentage equivalents apply in every department:</p>
+            <ul class="percent-scale">
+                <li>A+ 97 and up</li>
+                <li>A 93 – 96</li>
+                <li>A‑ 90 – 92</li>
+                <li>B+ 87 – 89</li>
+                <li>B 83 – 86</li>
+                <li>B‑ 80 – 82</li>
+                <li>C+ 77 – 79</li>
+                <li>C 73 – 76</li>
+                <li>C‑ 70 – 72</li>
+                <li>D+ 67 – 69</li>
+                <li>D 63 – 66</li>
+                <li>D‑ 60 – 62</li>
+                <li>F 59 and below</li>
+            </ul>
 
-  <!-- 4. Weighting rules -->
-  <p style="margin:4px 0;">
-    • <strong>Honors&nbsp;(H)</strong> courses add <code>+0.30</code> to the final weighted GPA.<br>
-    • <strong>Advanced Placement&nbsp;(AP)</strong> courses add <code>+0.50</code>.<br>
-    • Tenth‑grade Level I (“Advanced”) courses receive no additional weighting.<br>
-    • Physical Education/Health are excluded from GPA. Glen Rock Middle & High School does not report class rank.
-  </p>
+            <p style="margin:4px 0;">
+                For GPA computation, these letter grades convert to grade‑point values:<br>
+                A+ 4.3, A 4.0, A‑ 3.7, B+ 3.3, B 3.0, B‑ 2.7,
+                C+ 2.3, C 2.0, C‑ 1.7, D+ 1.3, D 1.0, D‑ 0.7, F 0.0.
+            </p>
 
-  <!-- ——— keep the formula & example section that you already liked ——— -->
-  <!-- (your Σ[(Base + w) × Credits] equations and worked example) -->
-</section>
+            <p style="margin:4px 0;">
+                • <strong>Honors (H)</strong> courses add <code>+0.30</code> to the final weighted GPA.<br>
+                • <strong>Advanced Placement (AP)</strong> courses add <code>+0.50</code>.<br>
+                • Tenth‑grade Level I (“Advanced”) courses receive no additional weighting.<br>
+                • Physical Education/Health are excluded from GPA. Glen Rock Middle & High School does not report class rank.
+            </p>
 
+            <table class="grade-scale">
+                <tr><th>Course Level</th><th>Add‑on (“w”)</th></tr>
+                <tr><td>AP</td><td>+0.50</td></tr>
+                <tr><td>Honors</td><td>+0.30</td></tr>
+                <tr><td>CP (Regular)</td><td>+0.00</td></tr>
+            </table>
 
-  <!-- 2. Course‑level weighting -->
-  <table class="grade-scale">
-    <tr><th>Course Level</th><th>Add‑on (“w”)</th></tr>
-    <tr><td>AP</td><td>+0.50</td></tr>
-    <tr><td>Honors</td><td>+0.30</td></tr>
-    <tr><td>CP&nbsp;(Regular)</td><td>+0.00</td></tr>
-  </table>
+            <p style="margin:8px 0;">
+                <strong>Adjusted grade points for a single class:</strong><br>
+                <code>(Base GPA + w) × Credits</code>
+                &nbsp;&nbsp;where <code>w</code> is 0.50 for AP, 0.30 for Honors, 0 for CP.
+            </p>
 
-  <!-- 3. Formulae -->
-  <p style="margin:8px 0;">
-    <strong>Adjusted grade points for a single class:</strong><br>
-    <code>(Base&nbsp;GPA&nbsp;+&nbsp;w) × Credits</code>
-    &nbsp;&nbsp;where&nbsp;<code>w</code> is&nbsp;0.50 for AP, 0.30 for Honors, 0 for CP.
-  </p>
+            <p style="margin:8px 0;">
+                <strong>Per‑year GPA:</strong><br>
+                <code>Year GPA = Σ[(Base GPA + w) × Credits] ÷ Σ(Credits)</code>
+            </p>
 
-  <p style="margin:8px 0;">
-    <strong>Per‑year GPA:</strong><br>
-    <code>Year GPA = Σ[(Base&nbsp;GPA&nbsp;+ w) × Credits] ÷ Σ(Credits)</code>
-  </p>
+            <p style="margin:8px 0;">
+                <strong>Cumulative GPA:</strong><br>
+                Apply the same weighted‑average formula across <em>all</em> years:<br>
+                <code>Cumulative GPA = ΣYear Points ÷ ΣYear Credits</code>
+            </p>
 
-  <p style="margin:8px 0;">
-    <strong>Cumulative GPA:</strong><br>
-    Apply the same weighted‑average formula across <em>all</em> years:
-    <code>Cumulative GPA = ΣYear Points ÷ ΣYear Credits</code>.
-  </p>
+            <h3>Example</h3>
+            <table class="example">
+                <tr><th>Course</th><th>Level</th><th>Credits</th><th>Letter</th><th>Calc</th><th>Grade Pts</th></tr>
+                <tr><td>AP Chemistry</td><td>AP</td><td>7</td><td>A‑</td><td>(3.7 + 0.5) × 7</td><td>29.4</td></tr>
+                <tr><td>Honors English</td><td>Honors</td><td>5</td><td>B+</td><td>(3.3 + 0.3) × 5</td><td>18.0</td></tr>
+                <tr><td>World History</td><td>CP</td><td>5</td><td>A</td><td>(4.0 + 0) × 5</td><td>20.0</td></tr>
+                <tr class="tot"><td>Total</td><td>—</td><td>17</td><td>—</td><td>—</td><td>67.4</td></tr>
+                <tr class="gpa"><td colspan="6">Year GPA = 67.4 ÷ 17 = 3.96</td></tr>
+            </table>
+        </section>
+<!-- existing content above -->
+        <script>
+            const gradeToGPA = {
+                "A+": 4.3, "A": 4.0, "A-": 3.7,
+                "B+": 3.3, "B": 3.0, "B-": 2.7,
+                "C+": 2.3, "C": 2.0, "C-": 1.7,
+                "D+": 1.3, "D": 1.0, "D-": 0.7,
+                "F": 0.0
+            };
+            const years = ["freshman", "sophomore", "junior", "senior"];
 
-  <!-- 4. Worked example showing an AP, an Honors, and a CP course -->
-  <h3>Example</h3>
-  <table class="example">
-    <tr><th>Course</th><th>Level</th><th>Credits</th><th>Letter</th><th>Calc</th><th>Grade Pts</th></tr>
+            function createYearSection(year) {
+                const container = document.getElementById("year-sections");
+                const div = document.createElement("div");
+                div.className = "year-box";
+                div.innerHTML = `
+                    <h2>${year.charAt(0).toUpperCase() + year.slice(1)}</h2>
+                    <table id="${year}" class="year-table">
+                        <tr>
+                            <th>Course (optional)</th>
+                            <th>Grade</th>
+                            <th>Credits</th>
+                            <th>Type</th>
+                            <th style="width: 30px;"></th>
+                        </tr>
+                    </table>
+                    <button onclick="addClassRow('${year}')">+ Add Class</button>
+                `;
+                container.appendChild(div);
+                addClassRow(year);
+            }
 
-    <tr><td>AP Chemistry</td><td>AP</td><td>7</td><td>A‑</td>
-        <td>(3.7&nbsp;+&nbsp;0.5)&nbsp;×&nbsp;7</td><td>29.4</td></tr>
+            function addClassRow(year) {
+                const table = document.getElementById(year);
+                const row = document.createElement("tr");
+                row.innerHTML = createRowHTML();
+                table.appendChild(row);
+            }
 
-    <tr><td>Honors English</td><td>Honors</td><td>5</td><td>B+</td>
-        <td>(3.3&nbsp;+&nbsp;0.3)&nbsp;×&nbsp;5</td><td>18.0</td></tr>
+            function createRowHTML(course = "", grade = "", credits = "", type = "regular") {
+                return `
+                    <tr>
+                        <td><input type="text" value="${course}" /></td>
+                        <td>
+                            <select class="grade">
+                                ${["", "A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"].map(opt =>
+                                    `<option value="${opt}" ${opt === grade ? "selected" : ""}>${opt}</option>`).join("")}
+                            </select>
+                        </td>
+                        <td><input type="number" class="credits" value="${credits}" min="0" step="0.5" /></td>
+                        <td>
+                            <select class="type">
+                                ${["regular", "honors", "ap"].map(opt =>
+                                    `<option value="${opt}" ${opt === type ? "selected" : ""}>${opt}</option>`).join("")}
+                            </select>
+                        </td>
+                        <td><button onclick="this.closest('tr').remove()" style="padding:2px 6px; font-size:12px;">✕</button></td>
+                    </tr>
+                `;
+            }
 
-    <tr><td>World History</td><td>CP</td><td>5</td><td>A</td>
-        <td>(4.0&nbsp;+&nbsp;0)&nbsp;×&nbsp;5</td><td>20.0</td></tr>
+            document.getElementById("calculate").addEventListener("click", function () {
+                let totalPoints = 0;
+                let totalCredits = 0;
+                const summaryLines = [];
 
-    <tr class="tot"><td>Total</td><td>—</td><td>17</td><td>—</td><td>—</td><td>67.4</td></tr>
-    <tr class="gpa"><td colspan="6">Year&nbsp;GPA = 67.4 ÷ 17 = 3.96</td></tr>
-  </table>
-</section>
-<!-- ===================== END GPA EXPLAINER ====================== -->
+                years.forEach(year => {
+                    let yearPoints = 0;
+                    let yearCredits = 0;
+                    const table = document.getElementById(year);
+                    const rows = table.querySelectorAll("tr");
+                    for (let i = 1; i < rows.length; i++) {
+                        const row = rows[i];
+                        const grade = row.querySelector(".grade")?.value;
+                        const credit = parseFloat(row.querySelector(".credits")?.value);
+                        const type = row.querySelector(".type")?.value;
 
+                        if (grade && !isNaN(credit)) {
+                            let gpa = gradeToGPA[grade];
+                            if (type === "honors") gpa += 0.3;
+                            if (type === "ap") gpa += 0.5;
+                            yearPoints += gpa * credit;
+                            yearCredits += credit;
+                        }
+                    }
 
-  <script>
-    const gradeToGPA = {
-      "A+": 4.3, "A": 4.0, "A-": 3.7,
-      "B+": 3.3, "B": 3.0, "B-": 2.7,
-      "C+": 2.3, "C": 2.0, "C-": 1.7,
-      "D+": 1.3, "D": 1.0, "D-": 0.7,
-      "F": 0.0
-    };
-    const years = ["freshman", "sophomore", "junior", "senior"];
+                    if (yearCredits > 0) {
+                        const yearGPA = (yearPoints / yearCredits).toFixed(4);
+                        summaryLines.push(`<strong>${year.charAt(0).toUpperCase() + year.slice(1)}:</strong> GPA = ${yearGPA}, Credits = ${yearCredits}`);
+                        totalPoints += yearPoints;
+                        totalCredits += yearCredits;
+                    }
+                });
 
-    function createYearSection(year) {
-  const container = document.getElementById("year-sections");
-  const div = document.createElement("div");
-  div.className = "year-box";
-  div.innerHTML = `
-    <h2>${year.charAt(0).toUpperCase() + year.slice(1)}</h2>
-    <table id="${year}" class="year-table">
-      <tr>
-        <th>Course (optional)</th>
-        <th>Grade</th>
-        <th>Credits</th>
-        <th>Type</th>
-        <th style="width: 30px;"></th>
-      </tr>
-    </table>
-    <button onclick="addClassRow('${year}')">+ Add Class</button>
-  `;
-  container.appendChild(div);
-  addClassRow(year);
-}
+                const finalGPA = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(4) : "N/A";
+                document.getElementById("result").textContent = `Your Weighted GPA is: ${finalGPA}`;
+                document.getElementById("summary").innerHTML = summaryLines.join("<br>");
+            });
 
-    function addClassRow(year) {
-  const table = document.getElementById(year);
-  const row = document.createElement("tr");
-  row.innerHTML = createRowHTML();
-  table.appendChild(row);
-}
+            function exportData() {
+                const lines = [];
+                years.forEach(year => {
+                    const table = document.getElementById(year);
+                    const rows = table.querySelectorAll("tr");
+                    for (let i = 1; i < rows.length; i++) {
+                        const row = rows[i];
+                        const course = row.querySelector("input[type='text']")?.value || "";
+                        const grade = row.querySelector(".grade")?.value || "";
+                        const credits = row.querySelector(".credits")?.value || "";
+                        const type = row.querySelector(".type")?.value || "";
+                        lines.push(`${year}|${course}|${grade}|${credits}|${type}`);
+                    }
+                });
 
-function createRowHTML(course = "", grade = "", credits = "", type = "regular") {
-  return `
-    <tr>
-      <td><input type="text" value="${course}" /></td>
-      <td>
-        <select class="grade">
-          ${["", "A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"].map(opt =>
-            `<option value="${opt}" ${opt === grade ? "selected" : ""}>${opt}</option>`).join("")}
-        </select>
-      </td>
-      <td><input type="number" class="credits" value="${credits}" min="0" step="0.5" /></td>
-      <td>
-        <select class="type">
-          ${["regular", "honors", "ap"].map(opt =>
-            `<option value="${opt}" ${opt === type ? "selected" : ""}>${opt}</option>`).join("")}
-        </select>
-      </td>
-      <td><button onclick="this.closest('tr').remove()" style="padding:2px 6px; font-size:12px;">✕</button></td>
-    </tr>
-  `;
-}
+                const blob = new Blob([lines.join("\n")], { type: "text/plain" });
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = "gpa_data.txt";
+                link.click();
+            }
 
-    document.getElementById("calculate").addEventListener("click", function () {
-      let totalPoints = 0;
-      let totalCredits = 0;
-      const summaryLines = [];
+            function importData() {
+                const fileInput = document.getElementById("fileInput");
+                const file = fileInput.files[0];
+                if (!file) return;
 
-      years.forEach(year => {
-        let yearPoints = 0;
-        let yearCredits = 0;
-        const table = document.getElementById(year);
-        const rows = table.querySelectorAll("tr");
-        for (let i = 1; i < rows.length; i++) {
-          const row = rows[i];
-          const grade = row.querySelector(".grade")?.value;
-          const credit = parseFloat(row.querySelector(".credits")?.value);
-          const type = row.querySelector(".type")?.value;
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const lines = e.target.result.split("\n");
+                    years.forEach(year => {
+                        const table = document.getElementById(year);
+                        while (table.rows.length > 1) {
+                            table.deleteRow(1);
+                        }
+                    });
+                    lines.forEach(line => {
+                        const [year, course, grade, credits, type] = line.trim().split("|");
+                        if (!years.includes(year)) return;
+                        const table = document.getElementById(year);
+                        const row = document.createElement("tr");
+                        row.innerHTML = createRowHTML(course, grade, credits, type);
+                        table.appendChild(row);
+                    });
+                };
+                reader.readAsText(file);
+            }
 
-          if (grade && !isNaN(credit)) {
-            let gpa = gradeToGPA[grade];
-            if (type === "honors") gpa += 0.3;
-            if (type === "ap") gpa += 0.5;
-            yearPoints += gpa * credit;
-            yearCredits += credit;
-          }
-        }
+            years.forEach(createYearSection);
 
-        if (yearCredits > 0) {
-          const yearGPA = (yearPoints / yearCredits).toFixed(4);
-          summaryLines.push(`<strong>${year.charAt(0).toUpperCase() + year.slice(1)}:</strong> GPA = ${yearGPA}, Credits = ${yearCredits}`);
-          totalPoints += yearPoints;
-          totalCredits += yearCredits;
-        }
-      });
+            function calculateFinalGrade() {
+                const isAP = document.getElementById("isAP").checked;
+                const isSemester = document.getElementById("isSemester").checked;
 
-      const finalGPA = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(4) : "N/A";
-      document.getElementById("result").textContent = `Your Weighted GPA is: ${finalGPA}`;
-      document.getElementById("summary").innerHTML = summaryLines.join("<br>");
-    });
+                const inputs = document.querySelectorAll("#grade-inputs select");
+                const weights = [];
+                let grades = [];
 
-    function exportData() {
-      const lines = [];
-      years.forEach(year => {
-        const table = document.getElementById(year);
-        const rows = table.querySelectorAll("tr");
-        for (let i = 1; i < rows.length; i++) {
-          const row = rows[i];
-          const course = row.querySelector("input[type='text']")?.value || "";
-          const grade = row.querySelector(".grade")?.value || "";
-          const credits = row.querySelector(".credits")?.value || "";
-          const type = row.querySelector(".type")?.value || "";
-          lines.push(`${year}|${course}|${grade}|${credits}|${type}`);
-        }
-      });
+                inputs.forEach(input => {
+                    const val = input.value.trim();
+                    if (val && gradeToGPA[val]) {
+                        grades.push(gradeToGPA[val]);
+                    } else {
+                        grades.push(NaN);
+                    }
+                });
 
-      const blob = new Blob([lines.join("\n")], { type: "text/plain" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "gpa_data.txt";
-      link.click();
-    }
+                if (grades.some(isNaN)) {
+                    document.getElementById("final-grade-result").textContent = "Please enter valid letter grades.";
+                    return;
+                }
 
-    function importData() {
-      const fileInput = document.getElementById("fileInput");
-      const file = fileInput.files[0];
-      if (!file) return;
+                if (isAP && isSemester) {
+                    weights.push(0.5, 0.5);
+                } else if (isAP && !isSemester) {
+                    weights.push(0.25, 0.25, 0.25, 0.25);
+                } else if (!isAP && isSemester) {
+                    weights.push(0.45, 0.45, 0.10);
+                } else {
+                    weights.push(0.225, 0.225, 0.225, 0.225, 0.10);
+                }
 
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const lines = e.target.result.split("\n");
-        years.forEach(year => {
-          const table = document.getElementById(year);
-          while (table.rows.length > 1) {
-            table.deleteRow(1);
-          }
-        });
-        lines.forEach(line => {
-          const [year, course, grade, credits, type] = line.trim().split("|");
-          if (!years.includes(year)) return;
-          const table = document.getElementById(year);
-          const row = document.createElement("tr");
-          row.innerHTML = createRowHTML(course, grade, credits, type);
-          table.appendChild(row);
-        });
-      };
-      reader.readAsText(file);
-    }
+                const weightedSum = grades.reduce((acc, val, i) => acc + val * weights[i], 0);
+                const rounded = Math.round(weightedSum * 100) / 100;
 
-    years.forEach(createYearSection);
-  </script>
-</body>
+                // find closest matching GPA value
+                let closest = null;
+                let minDiff = Infinity;
+                for (const [letter, gpa] of Object.entries(gradeToGPA)) {
+                    const diff = Math.abs(gpa - rounded);
+                    if (diff < minDiff || (diff === minDiff && gpa > gradeToGPA[closest])) {
+                        minDiff = diff;
+                        closest = letter;
+                    }
+                }
+
+                document.getElementById("final-grade-result").textContent = `Final Letter Grade: ${closest}`;
+            }
+
+            document.getElementById("isAP").addEventListener("change", generateFinalGradeInputs);
+            document.getElementById("isSemester").addEventListener("change", generateFinalGradeInputs);
+
+            function generateFinalGradeInputs() {
+                const container = document.getElementById("grade-inputs");
+                container.innerHTML = "";
+                const isAP = document.getElementById("isAP").checked;
+                const isSemester = document.getElementById("isSemester").checked;
+                let labels = [];
+
+                if (isAP && isSemester) {
+                    labels = ["Half 1", "Half 2"];
+                } else if (isAP) {
+                    labels = ["MP1", "MP2", "MP3", "MP4"];
+                } else if (isSemester) {
+                    labels = ["Half 1", "Half 2", "Final"];
+                } else {
+                    labels = ["MP1", "MP2", "MP3", "MP4", "Final"];
+                }
+
+                labels.forEach(label => {
+                    const div = document.createElement("div");
+                    div.innerHTML = `<label style="display: flex; align-items: center; gap: 5px;">${label}: <select>
+    <option value="">--</option>
+    ${["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"].map(opt => `<option value="${opt}">${opt}</option>`).join("")}
+</select></label>`;
+                    container.appendChild(div);
+                });
+            }
+
+            generateFinalGradeInputs();
+        </script>
+    </body>
 </html>
