@@ -181,10 +181,19 @@
     box-sizing: border-box;
   }
 
-  input, select, button {
-    width: 100%;
-    box-sizing: border-box;
-  }
+  input[type="text"], input[type="number"], select, button {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13px;
+  padding: 4px 6px;
+  color: #333;
+  box-sizing: border-box;
+}
 }
 .year-box {
   width: 100%;
@@ -213,6 +222,108 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+input, select, button {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13px;
+  padding: 4px 6px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='10'%20height='5'%20viewBox='0%200%2010%205'%3E%3Cpath%20fill='%23666'%20d='M0%200l5%205%205-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 10px 5px;
+  padding-right: 20px;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  background-color: transparent;
+  vertical-align: middle;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #333;
+  border-color: #333;
+}
+
+button {
+  padding: 6px 12px;
+  font-size: 13px;
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+  height: 30px;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #f0f0f0;
+}
+
+select {
+  height: 30px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 24px 4px 6px;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%23666'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpolyline%20points='6%209%2012%2015%2018%209'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 12px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="text"], input[type="number"] {
+  height: 30px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+button[onclick*="remove"] {
+  background: none;
+  border: none;
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+  padding: 0 6px;
+  height: auto;
+  transition: color 0.2s;
+}
+
+button[onclick*="remove"]:hover {
+  color: red;
+  cursor: pointer;
+}
+
+
+
 </style>
     </head>
     <body style="max-width: 900px; margin: auto; padding: 40px;">
@@ -240,89 +351,125 @@ input::-webkit-inner-spin-button {
 
         <!-- Final Grade Calculator Section -->
         <div id="final-grade-calc" style="margin-top: 40px;">
-            <h2>Final Grade Calculator</h2>
-            <label style="display: inline-flex; align-items: center; gap: 5px;"><input type="checkbox" id="isAP"> AP</label>
-            <label style="display: inline-flex; align-items: center; gap: 5px;"><input type="checkbox" id="isSemester"> Semester</label>
-
-            <div id="grade-inputs" style="margin-top: 10px;"></div>
+  <h2>Final Grade Calculator</h2>
+  <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+  <label style="display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px;">
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <input type="checkbox" id="isAP">
+      <strong>AP</strong>
+    </div>
+    <small>(mark if your class is an AP class)</small>
+  </label>
+  <label style="display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px;">
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <input type="checkbox" id="isSemester">
+      <strong>Semester</strong>
+    </div>
+    <small>(mark if your class is a semester class)</small>
+  </label>
+</div>
+<div id="grade-inputs" style="margin-top: 10px;"></div>
             <button onclick="calculateFinalGrade()">Calculate Final Grade</button>
             <p id="final-grade-result"></p>
         </div>
 
         <section id="gpa-explainer">
-            <h2>How GPA is Calculated</h2>
+  <h2>How GPA is Calculated</h2>
 
-            <h2 style="color:#800; margin-bottom:4px;">GRADING SYSTEM</h2>
+  <h3>GRADING SYSTEM</h3>
+  <p>The Glen Rock grading system consists of thirteen letter grades: <strong>A+, A, A‑, B+, B, B‑, C+, C, C‑, D+, D, D‑, F</strong>.</p>
 
-            <p style="margin:4px 0;">
-                The grading system consists of thirteen letter grades:
-                A+, A, A‑, B+, B, B‑, C+, C, C‑, D+, D, D‑, F
-            </p>
+  <table class="grade-scale" style="width: auto; font-size: 13px; border-collapse: collapse; border: none; margin-left: 12px;">
+  <tr><th style="border: none; padding: 4px 8px;">Letter</th><th style="border: none; padding: 4px 8px;">% Range</th><th style="border: none; padding: 4px 8px;">GPA</th></tr>
+  <tr><td style="border: none; padding: 2px 8px;">A+</td><td style="border: none;">97+</td><td style="border: none;">4.3</td></tr>
+  <tr><td style="border: none; padding: 2px 8px;">A</td><td style="border: none;">93–96</td><td style="border: none;">4.0</td></tr>
+  <tr><td style="border: none; padding: 2px 8px;">A‑</td><td style="border: none;">90–92</td><td style="border: none;">3.7</td></tr>
+  <tr><td style="border: none; padding: 2px 8px;">B+</td><td style="border: none;">87–89</td><td style="border: none;">3.3</td></tr>
+  <tr><td style="border: none; padding: 2px 8px;">B</td><td style="border: none;">83–86</td><td style="border: none;">3.0</td></tr>
+  <tr><td style="border: none; padding: 2px 8px;">B‑</td><td style="border: none;">80–82</td><td style="border: none;">2.7</td></tr>
+  <tr><td style="border: none; padding: 2px 8px;">C+</td><td style="border: none;">77–79</td><td style="border: none;">2.3</td></tr>
+  <tr><td style="border: none; padding: 2px 8px;">C</td><td style="border: none;">73–76</td><td style="border: none;">2.0</td></tr>
+  <tr><td style="border: none; padding: 2px 8px;">C‑</td><td style="border: none;">70–72</td><td style="border: none;">1.7</td></tr>
+  <tr><td style="border: none; padding: 2px 8px;">D+</td><td style="border: none;">67–69</td><td style="border: none;">1.3</td></tr>
+  <tr><td style="border: none; padding: 2px 8px;">D</td><td style="border: none;">63–66</td><td style="border: none;">1.0</td></tr>
+  <tr><td style="border: none; padding: 2px 8px;">D‑</td><td style="border: none;">60–62</td><td style="border: none;">0.7</td></tr>
+  <tr><td style="border: none; padding: 2px 8px;">F</td><td style="border: none;">≤59</td><td style="border: none;">0.0</td></tr>
+</table>
 
-            <p style="margin:4px 0;">The following percentage equivalents apply in every department:</p>
-            <ul class="percent-scale">
-                <li>A+ 97 and up</li>
-                <li>A 93 – 96</li>
-                <li>A‑ 90 – 92</li>
-                <li>B+ 87 – 89</li>
-                <li>B 83 – 86</li>
-                <li>B‑ 80 – 82</li>
-                <li>C+ 77 – 79</li>
-                <li>C 73 – 76</li>
-                <li>C‑ 70 – 72</li>
-                <li>D+ 67 – 69</li>
-                <li>D 63 – 66</li>
-                <li>D‑ 60 – 62</li>
-                <li>F 59 and below</li>
-            </ul>
+  <p>Courses designated as <strong>Honors</strong> receive an additional 0.3 weight. <strong>AP (Advanced Placement)</strong> courses receive an additional 0.5 weight. College Prep and "Advanced" courses receive no extra weight. Physical Education and Health are not included in GPA calculations.</p>
 
-            <p style="margin:4px 0;">
-                For GPA computation, these letter grades convert to grade‑point values:<br>
-                A+ 4.3, A 4.0, A‑ 3.7, B+ 3.3, B 3.0, B‑ 2.7,
-                C+ 2.3, C 2.0, C‑ 1.7, D+ 1.3, D 1.0, D‑ 0.7, F 0.0.
-            </p>
+  <h3>Step-by-Step GPA Calculation</h3>
 
-            <p style="margin:4px 0;">
-                • <strong>Honors (H)</strong> courses add <code>+0.30</code> to the final weighted GPA.<br>
-                • <strong>Advanced Placement (AP)</strong> courses add <code>+0.50</code>.<br>
-                • Tenth‑grade Level I (“Advanced”) courses receive no additional weighting.<br>
-                • Physical Education/Health are excluded from GPA. Glen Rock Middle & High School does not report class rank.
-            </p>
+  <ol>
+    <li><strong>Convert Letter Grade to GPA:</strong> Use the table above.</li>
+    <li><strong>Add Course Weight:</strong>
+      <ul>
+        <li>AP = +0.50</li>
+        <li>Honors = +0.30</li>
+        <li>CP/CP = 0</li>
+      </ul>
+    </li>
+    <li><strong>Multiply by Credits:</strong> 
+      <br>Grade Points = (Base GPA + Weight) × Credits
+    </li>
+    <li><strong>Add Up All Grade Points and Credits for the Year.</strong></li>
+    <li><strong>Calculate GPA:</strong> 
+      <br>Year GPA = Total Grade Points ÷ Total Credits
+    </li>
+    <li><strong>Cumulative GPA:</strong> 
+      <br>Add all year totals and divide: 
+      <br><code>Cumulative GPA = Σ Grade Points ÷ Σ Credits</code>
+    </li>
+  </ol>
 
-            <table class="grade-scale">
-                <tr><th>Course Level</th><th>Add‑on (“w”)</th></tr>
-                <tr><td>AP</td><td>+0.50</td></tr>
-                <tr><td>Honors</td><td>+0.30</td></tr>
-                <tr><td>CP (Regular)</td><td>+0.00</td></tr>
-            </table>
+  <h3>Example</h3>
+  <table class="example">
+    <tr><th>Course</th><th>Level</th><th>Credits</th><th>Letter</th><th>Calc</th><th>Grade Pts</th></tr>
+    <tr><td>AP Chemistry</td><td>AP</td><td>7</td><td>A‑</td><td>(3.7 + 0.5) × 7</td><td>29.4</td></tr>
+    <tr><td>Honors English</td><td>Honors</td><td>5</td><td>B+</td><td>(3.3 + 0.3) × 5</td><td>18.0</td></tr>
+    <tr><td>World History</td><td>CP</td><td>5</td><td>A</td><td>(4.0 + 0.0) × 5</td><td>20.0</td></tr>
+    <tr class="tot"><td>Total</td><td>—</td><td>17</td><td>—</td><td>—</td><td>67.4</td></tr>
+    <tr class="gpa"><td colspan="6">Year GPA = 67.4 ÷ 17 = 3.96</td></tr>
+  </table>
+<h2 style="margin-top: 40px;">How Final Grades Are Calculated</h2>
 
-            <p style="margin:8px 0;">
-                <strong>Adjusted grade points for a single class:</strong><br>
-                <code>(Base GPA + w) × Credits</code>
-                &nbsp;&nbsp;where <code>w</code> is 0.50 for AP, 0.30 for Honors, 0 for CP.
-            </p>
+<p>At Glen Rock High School, your final course grade is calculated based on a weighted average of your marking period grades and final exam score. The weights vary depending on course type (AP, CP, or semester).</p>
 
-            <p style="margin:8px 0;">
-                <strong>Per‑year GPA:</strong><br>
-                <code>Year GPA = Σ[(Base GPA + w) × Credits] ÷ Σ(Credits)</code>
-            </p>
+<h3>Full-Year CP and Honors Courses</h3>
+<ul>
+  <li>Each Marking Period (MP1–MP4): 22.5%</li>
+  <li>Final Exam: 10%</li>
+</ul>
+<p><em>Final Grade = MP1 × 22.5% + MP2 × 22.5% + MP3 × 22.5% + MP4 × 22.5% + Final × 10%</em></p>
 
-            <p style="margin:8px 0;">
-                <strong>Cumulative GPA:</strong><br>
-                Apply the same weighted‑average formula across <em>all</em> years:<br>
-                <code>Cumulative GPA = ΣYear Points ÷ ΣYear Credits</code>
-            </p>
+<h3>Full-Year AP Courses</h3>
+<ul>
+  <li>Each Marking Period (MP1–MP4): 25%</li>
+  <li>No final exam grade is included.</li>
+</ul>
+<p><em>Final Grade = MP1 × 25% + MP2 × 25% + MP3 × 25% + MP4 × 25%</em></p>
 
-            <h3>Example</h3>
-            <table class="example">
-                <tr><th>Course</th><th>Level</th><th>Credits</th><th>Letter</th><th>Calc</th><th>Grade Pts</th></tr>
-                <tr><td>AP Chemistry</td><td>AP</td><td>7</td><td>A‑</td><td>(3.7 + 0.5) × 7</td><td>29.4</td></tr>
-                <tr><td>Honors English</td><td>Honors</td><td>5</td><td>B+</td><td>(3.3 + 0.3) × 5</td><td>18.0</td></tr>
-                <tr><td>World History</td><td>CP</td><td>5</td><td>A</td><td>(4.0 + 0) × 5</td><td>20.0</td></tr>
-                <tr class="tot"><td>Total</td><td>—</td><td>17</td><td>—</td><td>—</td><td>67.4</td></tr>
-                <tr class="gpa"><td colspan="6">Year GPA = 67.4 ÷ 17 = 3.96</td></tr>
-            </table>
-        </section>
+<h3>Semester Courses (CP/Honors/AP)</h3>
+<ul>
+  <li>Each Half: 45%</li>
+  <li>Final Exam: 10% (CP/Honors only)</li>
+</ul>
+<p><em>Final Grade = Half 1 × 45% + Half 2 × 45% + Final × 10%</em></p>
+<p><em>AP semester courses do not have a final exam. For those courses: Final Grade = Half 1 × 50% + Half 2 × 50%</em></p>
+
+<h3>Understanding Final Letter Assignment</h3>
+<p>After calculating the weighted average of your grades, the final result is matched to the closest letter grade using Glen Rock’s official scale. Though the school does not publish exact rounding cutoffs, the final letter grade is typically based on the GPA number that best represents the average performance.</p>
+
+<p>In practice, your GPA result is interpreted using the table below, and rounded to the nearest matching grade. Here are some illustrative examples:</p>
+
+<ul>
+  <li><strong>A, A, A+, A+</strong> → <strong>Final Grade: A+</strong></li>
+  <li><strong>A−, A+, A+, A+</strong> → <strong>Final Grade: A+</strong></li>
+  <li><strong>B+, A+, A+ (with final exam)</strong> → <strong>Final Grade: A</strong></li>
+</ul>
+
+<p>This process is built into the calculator above. You may try entering your own grades and weights to see how it rounds!</p>
+</section>
 <!-- existing content above -->
         <script>
             const gradeToGPA = {
@@ -362,7 +509,7 @@ input::-webkit-inner-spin-button {
                 table.appendChild(row);
             }
 
-            function createRowHTML(course = "", grade = "", credits = "", type = "regular") {
+            function createRowHTML(course = "", grade = "", credits = "", type = "cp") {
                 return `
                     <tr>
                         <td><input type="text" value="${course}" /></td>
@@ -375,7 +522,7 @@ input::-webkit-inner-spin-button {
                         <td><input type="number" class="credits" value="${credits}" min="0" step="0.5" /></td>
                         <td>
                             <select class="type">
-                                ${["regular", "honors", "ap"].map(opt =>
+                                ${["cp", "honors", "ap"].map(opt =>
                                     `<option value="${opt}" ${opt === type ? "selected" : ""}>${opt}</option>`).join("")}
                             </select>
                         </td>
@@ -545,10 +692,10 @@ input::-webkit-inner-spin-button {
                 labels.forEach((label, index) => {
     const div = document.createElement("div");
     const value = previousValues[index] || "";
-    div.innerHTML = `<label style="display: flex; align-items: center; gap: 5px;">${label}: <select>
+    div.innerHTML = `<div style="display: flex; align-items: center; min-width: 180px; gap: 5px;"><label style="white-space: nowrap; width: 80px;">${label}:</label><select style="flex: 1;">
         <option value="">--</option>
         ${["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"].map(opt => `<option value="${opt}" ${opt === value ? 'selected' : ''}>${opt}</option>`).join("")}
-    </select></label>`;
+    </select></div>`;
     container.appendChild(div);
                 });
             }
