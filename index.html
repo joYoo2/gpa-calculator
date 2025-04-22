@@ -1,213 +1,237 @@
+<!-- FULL RESTORE TO PRE-MANUAL-MODE-SAVE STATE COMPLETE -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GPA Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            max-width: 600px;
-            margin-left: 150px;
-        }
-
-        h1, h2 {
-            margin-top: 30px;
-        }
-
-        table {
-            width: 100%;
-            margin-bottom: 10px;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            border: 1px solid #ccc;
-            padding: 4px 6px;
-            font-size: 14px;
-            text-align: left;
-        }
-
-        input[type="text"] {
-            width: 200px;
-        }
-
-        input.credits {
-            width: 60px;
-        }
-
-        input, select {
-            font-size: 13px;
-            padding: 3px 5px;
-        }
-
-        button {
-            padding: 8px 16px;
-            font-size: 14px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        #result {
-            font-weight: bold;
-            font-size: 16px;
-        }
-    </style>
+  <title>GPA Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1, h2 {
+      margin-top: 20px;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .year-box {
+      border: 1px solid #ccc;
+      padding: 15px;
+      width: auto;
+      background: #f9f9f9;
+    }
+    table {
+      width: auto;
+      margin-bottom: 10px;
+      border-collapse: collapse;
+      table-layout: auto;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      font-size: 13px;
+      text-align: left;
+      vertical-align: middle;
+      padding: 1px 4px;
+      height: 30px;
+    }
+    input[type="text"] {
+      width: 120px;
+      height: auto;
+    }
+    input.credits {
+      width: 60px;
+      height: auto;
+    }
+    input, select {
+      font-size: 13px;
+      padding: 1px 3px;
+      height: 26px;
+      width: auto;
+    }
+    button {
+      padding: 6px 12px;
+      font-size: 13px;
+      margin-top: 8px;
+      display: inline-block;
+    }
+    #result {
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    #summary {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #eef;
+      border: 1px solid #99c;
+    }
+  </style>
 </head>
 <body>
-    <h1>GPA Calculator</h1>
+  <h1>GPA Calculator</h1>
 
-    <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px;">
-        <button onclick="exportData()">Export Data</button>
-        <button onclick="document.getElementById('fileInput').click()">Import Data</button>
-        <input type="file" id="fileInput" style="display: none;" onchange="importData()" />
-    </div>
+  <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px;">
+    <button onclick="exportData()">Export Data</button>
+    <button onclick="document.getElementById('fileInput').click()">Import Data</button>
+    <input type="file" id="fileInput" style="display: none;" onchange="importData()" />
+  </div>
 
-    <div id="year-sections"></div>
+  <div class="container" id="year-sections"></div>
 
-    <button id="calculate">Calculate GPA</button>
-    <h2>Result</h2>
-    <p id="result">Your GPA will appear here.</p>
+  <button id="calculate">Calculate GPA</button>
+  <p id="result">Your GPA will appear here.</p>
 
-    <script>
-        const gradeToGPA = {
-            "A+": 4.3, "A": 4.0, "A-": 3.7,
-            "B+": 3.3, "B": 3.0, "B-": 2.7,
-            "C+": 2.3, "C": 2.0, "C-": 1.7,
-            "D+": 1.3, "D": 1.0, "D-": 0.7,
-            "F": 0.0
-        };
+  <div id="summary"></div>
 
-        const years = ["freshman", "sophomore", "junior", "senior"];
+  <script>
+    const gradeToGPA = {
+      "A+": 4.3, "A": 4.0, "A-": 3.7,
+      "B+": 3.3, "B": 3.0, "B-": 2.7,
+      "C+": 2.3, "C": 2.0, "C-": 1.7,
+      "D+": 1.3, "D": 1.0, "D-": 0.7,
+      "F": 0.0
+    };
+    const years = ["freshman", "sophomore", "junior", "senior"];
 
-        function createYearSection(year) {
-            const container = document.getElementById("year-sections");
+    function createYearSection(year) {
+  const container = document.getElementById("year-sections");
+  const div = document.createElement("div");
+  div.className = "year-box";
+  div.innerHTML = `
+    <h2>${year.charAt(0).toUpperCase() + year.slice(1)}</h2>
+    <table id="${year}" class="year-table">
+      <tr>
+        <th>Course</th>
+        <th>Grade</th>
+        <th>Credits</th>
+        <th>Type</th>
+        <th style="width: 30px;"></th>
+      </tr>
+    </table>
+    <button onclick="addClassRow('${year}')">+ Add Class</button>
+  `;
+  container.appendChild(div);
+  addClassRow(year);
+}
 
-            const div = document.createElement("div");
-            div.innerHTML = `
-                <h2>${year.charAt(0).toUpperCase() + year.slice(1)} Year</h2>
-                <table id="${year}" class="year-table">
-                    <tr>
-                        <th>Course</th>
-                        <th>Grade</th>
-                        <th>Credits</th>
-                        <th>Course Type</th>
-                    </tr>
-                    ${createRowHTML()}
-                </table>
-                <button onclick="addClassRow('${year}')">+ Add Class</button>
-            `;
+    function addClassRow(year) {
+  const table = document.getElementById(year);
+  const row = document.createElement("tr");
+  row.innerHTML = createRowHTML();
+  table.appendChild(row);
+}
 
-            container.appendChild(div);
+function createRowHTML(course = "", grade = "", credits = "", type = "regular") {
+  return `
+    <tr>
+      <td><input type="text" value="${course}" /></td>
+      <td>
+        <select class="grade">
+          ${["", "A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"].map(opt =>
+            `<option value="${opt}" ${opt === grade ? "selected" : ""}>${opt}</option>`).join("")}
+        </select>
+      </td>
+      <td><input type="number" class="credits" value="${credits}" min="0" step="0.5" /></td>
+      <td>
+        <select class="type">
+          ${["regular", "honors", "ap"].map(opt =>
+            `<option value="${opt}" ${opt === type ? "selected" : ""}>${opt}</option>`).join("")}
+        </select>
+      </td>
+      <td><button onclick="this.closest('tr').remove()" style="padding:2px 6px; font-size:12px;">✕</button></td>
+    </tr>
+  `;
+}
+
+    document.getElementById("calculate").addEventListener("click", function () {
+      let totalPoints = 0;
+      let totalCredits = 0;
+      const summaryLines = [];
+
+      years.forEach(year => {
+        let yearPoints = 0;
+        let yearCredits = 0;
+        const table = document.getElementById(year);
+        const rows = table.querySelectorAll("tr");
+        for (let i = 1; i < rows.length; i++) {
+          const row = rows[i];
+          const grade = row.querySelector(".grade")?.value;
+          const credit = parseFloat(row.querySelector(".credits")?.value);
+          const type = row.querySelector(".type")?.value;
+
+          if (grade && !isNaN(credit)) {
+            let gpa = gradeToGPA[grade];
+            if (type === "honors") gpa += 0.3;
+            if (type === "ap") gpa += 0.5;
+            yearPoints += gpa * credit;
+            yearCredits += credit;
+          }
         }
 
-        function createRowHTML(course = "", grade = "", credits = "", type = "regular") {
-            return `
-                <tr>
-                    <td><input type="text" value="${course}" /></td>
-                    <td>
-                        <select class="grade">
-                            ${["", "A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"].map(opt =>
-                                `<option value="${opt}" ${opt === grade ? "selected" : ""}>${opt}</option>`).join("")}
-                        </select>
-                    </td>
-                    <td><input type="number" class="credits" value="${credits}" min="0" step="0.5" /></td>
-                    <td>
-                        <select class="type">
-                            ${["regular", "honors", "ap"].map(opt =>
-                                `<option value="${opt}" ${opt === type ? "selected" : ""}>${opt}</option>`).join("")}
-                        </select>
-                    </td>
-                </tr>
-            `;
+        if (yearCredits > 0) {
+          const yearGPA = (yearPoints / yearCredits).toFixed(2);
+          summaryLines.push(`<strong>${year.charAt(0).toUpperCase() + year.slice(1)}:</strong> GPA = ${yearGPA}, Credits = ${yearCredits}`);
+          totalPoints += yearPoints;
+          totalCredits += yearCredits;
         }
+      });
 
-        function addClassRow(tableId) {
-            const table = document.getElementById(tableId);
-            const row = document.createElement("tr");
-            row.innerHTML = createRowHTML();
-            table.appendChild(row);
+      const finalGPA = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : "N/A";
+      document.getElementById("result").textContent = `Your Weighted GPA is: ${finalGPA}`;
+      document.getElementById("summary").innerHTML = summaryLines.join("<br>");
+    });
+
+    function exportData() {
+      const lines = [];
+      years.forEach(year => {
+        const table = document.getElementById(year);
+        const rows = table.querySelectorAll("tr");
+        for (let i = 1; i < rows.length; i++) {
+          const row = rows[i];
+          const course = row.querySelector("input[type='text']")?.value || "";
+          const grade = row.querySelector(".grade")?.value || "";
+          const credits = row.querySelector(".credits")?.value || "";
+          const type = row.querySelector(".type")?.value || "";
+          lines.push(`${year}|${course}|${grade}|${credits}|${type}`);
         }
+      });
 
-        document.getElementById("calculate").addEventListener("click", function () {
-            const rows = document.querySelectorAll("table tr");
-            let totalPoints = 0;
-            let totalCredits = 0;
+      const blob = new Blob([lines.join("\n")], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "gpa_data.txt";
+      link.click();
+    }
 
-            rows.forEach(row => {
-                const grade = row.querySelector(".grade")?.value;
-                const credit = parseFloat(row.querySelector(".credits")?.value);
-                const type = row.querySelector(".type")?.value;
+    function importData() {
+      const fileInput = document.getElementById("fileInput");
+      const file = fileInput.files[0];
+      if (!file) return;
 
-                if (grade && !isNaN(credit)) {
-                    let gpa = gradeToGPA[grade];
-                    if (type === "honors") gpa += 0.3;
-                    if (type === "ap") gpa += 0.5;
-
-                    totalPoints += gpa * credit;
-                    totalCredits += credit;
-                }
-            });
-
-            const finalGPA = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : "N/A";
-            document.getElementById("result").textContent = `Your Weighted GPA is: ${finalGPA}`;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const lines = e.target.result.split("\n");
+        years.forEach(year => {
+          const table = document.getElementById(year);
+          while (table.rows.length > 1) {
+            table.deleteRow(1);
+          }
         });
+        lines.forEach(line => {
+          const [year, course, grade, credits, type] = line.trim().split("|");
+          if (!years.includes(year)) return;
+          const table = document.getElementById(year);
+          const row = document.createElement("tr");
+          row.innerHTML = createRowHTML(course, grade, credits, type);
+          table.appendChild(row);
+        });
+      };
+      reader.readAsText(file);
+    }
 
-        function exportData() {
-            const lines = [];
-            years.forEach(year => {
-                const table = document.getElementById(year);
-                const rows = table.querySelectorAll("tr");
-
-                for (let i = 1; i < rows.length; i++) {
-                    const cells = rows[i];
-                    const course = cells.querySelector("input[type='text']")?.value || "";
-                    const grade = cells.querySelector(".grade")?.value || "";
-                    const credits = cells.querySelector(".credits")?.value || "";
-                    const type = cells.querySelector(".type")?.value || "";
-                    lines.push(`${year}|${course}|${grade}|${credits}|${type}`);
-                }
-            });
-
-            const blob = new Blob([lines.join("\n")], { type: "text/plain" });
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "gpa_data.txt";
-            link.click();
-        }
-
-        function importData() {
-            const fileInput = document.getElementById("fileInput");
-            const file = fileInput.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const lines = e.target.result.split("\n");
-
-                // Clear existing rows
-                years.forEach(year => {
-                    const table = document.getElementById(year);
-                    while (table.rows.length > 1) {
-                        table.deleteRow(1);
-                    }
-                });
-
-                // Add rows from file
-                lines.forEach(line => {
-                    const [year, course, grade, credits, type] = line.trim().split("|");
-                    const table = document.getElementById(year);
-                    if (!table) return;
-                    const row = document.createElement("tr");
-                    row.innerHTML = createRowHTML(course, grade, credits, type);
-                    table.appendChild(row);
-                });
-            };
-            reader.readAsText(file);
-        }
-
-        // Initialize all 4 year sections
-        years.forEach(createYearSection);
-    </script>
+    years.forEach(createYearSection);
+  </script>
 </body>
 </html>
