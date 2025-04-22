@@ -12,13 +12,10 @@
             /* h1 { color: #003366; } */
 
             /* Change the box background and border color for each year */
-            /* .year-box {
-  border: 1px solid #ccc;
-  padding: 15px;
-  flex: 1 1 45%;
-  max-width: 45%;
-  background: #f9f9f9;
-  box-sizing: border-box;
+            /* 
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
 } */
 
             /* Change table header background */
@@ -40,7 +37,14 @@
             /* #result { color: #2a7b2a; } */
 
             /* Change summary background */
-            /* #summary { background-color: #e6f7ff; border-color: #91d5ff; } */
+            /* #summary {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: none;
+} */
             body {
                 font-family: Arial, sans-serif;
                 margin: 40px;
@@ -56,40 +60,32 @@
 }
           
             table {
-    width: 100%;
-    margin-bottom: 10px;
-    border-collapse: collapse;
-    table-layout: auto;
-    box-sizing: border-box;
-  }
-            th, td {
-                border: 1px solid #ccc;
-                font-size: 13px;
-                text-align: left;
-                vertical-align: middle;
-                padding: 1px 4px;
-                height: 30px;
-            }
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
             input[type="text"] {
-  width: 100%;
-  max-width: 250px;
-  height: auto;
-  box-sizing: border-box;
+  height: 35px;$1
 }
             input.credits {
-  width: 100%;
-  max-width: 80px;
-  height: auto;
-  box-sizing: border-box;
-  -moz-appearance: textfield;
+  height: 35px;$1
 }
             input, select {
-  font-size: 13px;
-  padding: 1px 3px;
   height: 26px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  padding: 2px 24px 2px 8px;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%23666'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpolyline%20points='6%209%2012%2015%2018%209'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 12px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  font-size: 13px;
+  margin-right: 4px;
   width: 100%;
-  max-width: 300px;
-  box-sizing: border-box;
+  max-width: 250px;
 }
             button {
                 padding: 6px 12px;
@@ -195,9 +191,7 @@
   box-sizing: border-box;
 }
 }
-.year-box {
-  width: 100%;
-  max-width: 420px;
+$1max-width: 100%;
   margin: 10px;
   box-sizing: border-box;
   padding: 10px;
@@ -212,7 +206,8 @@
 
 @media (min-width: 700px) {
   .year-box {
-    flex: 0 1 calc(50% - 40px);
+    flex: 0 1 calc(50% - 20px);
+    min-width: 300px;
   }
 }
 
@@ -282,28 +277,24 @@ button:hover {
 }
 
 select {
-  height: 30px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 4px 24px 4px 6px;
-  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%23666'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpolyline%20points='6%209%2012%2015%2018%209'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 8px center;
-  background-size: 12px;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
+  height: 30px;$1
 }
 
 input[type="text"], input[type="number"] {
-  height: 30px;
-  padding: 4px 6px;
+  height: 26px;
+  padding: 2px 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
   box-sizing: border-box;
   font-family: inherit;
   font-size: 13px;
+  margin-right: 4px;
+  width: 100%;
+  max-width: 250px;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: textfield !important;
+  background-image: none !important;
 }
 
 button[onclick*="remove"] {
@@ -311,10 +302,15 @@ button[onclick*="remove"] {
   border: none;
   font-weight: bold;
   color: #333;
-  font-size: 14px;
-  padding: 0 6px;
-  height: auto;
-  transition: color 0.2s;
+  font-size: 10px;
+  padding: 0 4px;
+  height: 20px;
+  vertical-align: middle;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 button[onclick*="remove"]:hover {
@@ -324,17 +320,91 @@ button[onclick*="remove"]:hover {
 
 
 
+.year-block {
+  background-color: #f9f9f9;
+  border: 2px solid #d0d0d0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  position: relative;
+  padding: 16px;
+  margin-top: 30px;
+  box-sizing: border-box;
+  max-width: 420px;
+  z-index: 0;
+}
+
+
+}
+
+
+
+.year-header {
+  position: absolute;
+  top: -22px;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  box-sizing: border-box;
+  z-index: 2;
+  display: block;
+  text-align: left;
+  margin: 0;
+}
+
+/* === Unified Card Style === */
+.card {
+  background-color: transparent;
+  padding: 0;
+  box-shadow: none;
+  border: none;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+}
+
+.card h2 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #333;
+  padding-bottom: 4px;
+}
+
+.card table {
+  background-color: #fff;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 16px;
+}
+
+$1padding: 4px 8px;
+  text-align: left;
+}
+
+.card button {
+  margin-top: 10px;
+}
+
+.card input,
+.card select {
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
 </style>
     </head>
     <body style="max-width: 900px; margin: auto; padding: 40px;">
-        <h1>Jo Yoo's GPA Calculator</h1>
-        <p>
-            Welcome to Joseph Yoo's GPA Calculator for Glen Rock High School.
-            To begin, enter your final letter grade, the number of credits earned per course, and the course level.
-            At Glen Rock High School, full-year classes are typically worth 5 credits, while semester-long courses are worth 2.5.
-            Science courses (non-AP) carry 6 credits due to the inclusion of a lab component, and AP science courses are valued at 7 credits.
-            Gym and Health do not count towards GPA.
-        </p>
+        <div class="card" style="padding: 20px; border: 1px solid #ccc; margin-bottom: 30px;">
+  <h1>Glen Rock GPA Calculator</h1>
+  <p>
+    Welcome to Joseph Yoo's GPA Calculator for Glen Rock High School. <br><br>
+    To begin, enter your final letter grade, the number of credits earned per course, and the course level.<br><br>
+    At Glen Rock High School, full-year classes are typically worth 5 credits, while semester-long courses are worth 2.5.
+    Science courses (non-AP) carry 6 credits due to the inclusion of a lab component, and AP science courses are valued at 7 credits.
+    Gym and Health do not count towards GPA.<br><br>
+    After inputting the data, export it in order to avoid needing to fill in everything again. Simply press import and select the file when you would like to use the calculator again later
+  </p>
+</div>
 
         <div style="display: flex; gap: 6px; align-items: flex-start; justify-content: flex-start; margin-bottom: 10px; flex-wrap: nowrap;">
             <button onclick="exportData()">Export Data</button>
@@ -342,16 +412,15 @@ button[onclick*="remove"]:hover {
             <input type="file" id="fileInput" style="display: none;" onchange="importData()" />
         </div>
 
-        <div class="container" id="year-sections"></div>
+        <div class="card" style="padding: 10px; border: 1px solid #ccc; margin: 10px 0 20px;"><div class="container" id="year-sections"></div></div>
+<div style="margin-top: 8px;" id="calculate-container"><button id="calculate">Calculate GPA</button></div>
+        <p id="result" style="margin-bottom: 4px;">GPA: </p>
 
-        <button id="calculate">Calculate GPA</button>
-        <p id="result">Your GPA will appear here.</p>
-
-        <div id="summary"></div>
+        <div id="summary" style="margin-top: 0; margin-bottom: 24px; padding-left: 16px; background: none; border: none;"></div>
 
         <!-- Final Grade Calculator Section -->
-        <div id="final-grade-calc" style="margin-top: 40px;">
-  <h2>Final Grade Calculator</h2>
+        <div class="card" style="padding: 20px; border: 1px solid #ccc; margin-bottom: 10px;">
+<h2 style="font-size: 20px;">Final Grade Calculator</h2>
   <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
   <label style="display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px;">
     <div style="display: flex; align-items: center; gap: 6px;">
@@ -373,8 +442,8 @@ button[onclick*="remove"]:hover {
             <p id="final-grade-result"></p>
         </div>
 
-        <section id="gpa-explainer">
-  <h2>How GPA is Calculated</h2>
+        <div class="card" style="padding: 20px; border: 1px solid #ccc; margin-bottom: 30px;">
+<h2>How GPA is Calculated</h2>
 
   <h3>GRADING SYSTEM</h3>
   <p>The Glen Rock grading system consists of thirteen letter grades: <strong>A+, A, A‑, B+, B, B‑, C+, C, C‑, D+, D, D‑, F</strong>.</p>
@@ -424,7 +493,7 @@ button[onclick*="remove"]:hover {
 
   <h3>Example</h3>
   <table class="example">
-    <tr><th>Course</th><th>Level</th><th>Credits</th><th>Letter</th><th>Calc</th><th>Grade Pts</th></tr>
+    <tr style="text-align: left;"><th>Course</th><th>Level</th><th style="width: 50px;">Credits</th><th>Letter</th><th>Calc</th><th>Grade Pts</th></tr>
     <tr><td>AP Chemistry</td><td>AP</td><td>7</td><td>A‑</td><td>(3.7 + 0.5) × 7</td><td>29.4</td></tr>
     <tr><td>Honors English</td><td>Honors</td><td>5</td><td>B+</td><td>(3.3 + 0.3) × 5</td><td>18.0</td></tr>
     <tr><td>World History</td><td>CP</td><td>5</td><td>A</td><td>(4.0 + 0.0) × 5</td><td>20.0</td></tr>
@@ -470,6 +539,7 @@ button[onclick*="remove"]:hover {
 
 <p>This process is built into the calculator above. You may try entering your own grades and weights to see how it rounds!</p>
 </section>
+</div>
 <!-- existing content above -->
         <script>
             const gradeToGPA = {
@@ -485,15 +555,18 @@ button[onclick*="remove"]:hover {
                 const container = document.getElementById("year-sections");
                 const div = document.createElement("div");
                 div.className = "year-box";
+div.style.paddingBottom = "6px";
+div.style.marginBottom = "8px";
+                const capitalizedYear = year.charAt(0).toUpperCase() + year.slice(1);
                 div.innerHTML = `
-                    <h2>${year.charAt(0).toUpperCase() + year.slice(1)}</h2>
+                    <h2 class="year-header">${capitalizedYear}</h2>
                     <table id="${year}" class="year-table">
                         <tr>
                             <th>Course (optional)</th>
                             <th>Grade</th>
                             <th>Credits</th>
-                            <th>Type</th>
-                            <th style="width: 30px;"></th>
+                            <th style="min-width: 70px;">Type</th>
+                            <th style="width: 12px;"></th>
                         </tr>
                     </table>
                     <button onclick="addClassRow('${year}')">+ Add Class</button>
@@ -526,7 +599,7 @@ button[onclick*="remove"]:hover {
                                     `<option value="${opt}" ${opt === type ? "selected" : ""}>${opt}</option>`).join("")}
                             </select>
                         </td>
-                        <td><button onclick="this.closest('tr').remove()" style="padding:2px 6px; font-size:12px;">✕</button></td>
+                        <td><button onclick="this.closest('tr').remove()" style="padding:2px 5px; font-size:12px;">✕</button></td>
                     </tr>
                 `;
             }
@@ -565,7 +638,7 @@ button[onclick*="remove"]:hover {
                 });
 
                 const finalGPA = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(4) : "N/A";
-                document.getElementById("result").textContent = `Your Weighted GPA is: ${finalGPA}`;
+                document.getElementById("result").textContent = `GPA: ${finalGPA}`;
                 document.getElementById("summary").innerHTML = summaryLines.join("<br>");
             });
 
