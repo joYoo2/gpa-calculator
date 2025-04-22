@@ -107,6 +107,93 @@
 
   <div id="summary"></div>
 
+  <!-- =========== GPA EXPLAINER (with AP / Honors / CP weighting) =========== -->
+<section id="gpa-explainer">
+  <h2>How GPA is Calculated</h2>
+
+  <!-- ========== GRADING SYSTEM (Glen Rock format) ========== -->
+<section id="gpa-explainer">
+  <h2 style="color:#800; margin-bottom:4px;">GRADING SYSTEM</h2>
+
+  <!-- 1. Letter grades offered -->
+  <p style="margin:4px 0;">
+    The grading system consists of thirteen letter grades: &nbsp;
+    A+, A, A‑, B+, B, B‑, C+, C, C‑, D+, D, D‑, F
+  </p>
+
+  <!-- 2. Percent equivalents (column layout) -->
+  <p style="margin:4px 0;">The following percentage equivalents apply in every department:</p>
+  <ul class="percent-scale">
+    <li>A+ 97 and up</li>  <li>A  93 – 96</li>  <li>A‑ 90 – 92</li>  <li>B+ 87 – 89</li> <li>B  83 – 86</li> <li>B‑ 80 – 82</li> <li>C+ 77 – 79</li> <li>C  73 – 76</li> <li>C‑ 70 – 72</li <li>D+ 67 – 69</li> <li>D  63 – 66</li> <li>D‑ 60 – 62</li> <li>F  59 and below</li>
+
+  </ul>
+
+  <!-- 3. Letter‑to‑GPA text (no table) -->
+  <p style="margin:4px 0;">
+    For GPA computation, these letter grades convert to grade‑point values:<br>
+    A+ 4.3, A 4.0, A‑ 3.7, B+ 3.3, B 3.0, B‑ 2.7, C+ 2.3, C 2.0, C‑ 1.7, D+ 1.3, D 1.0, D‑ 0.7, F 0.0.
+  </p>
+
+  <!-- 4. Weighting rules -->
+  <p style="margin:4px 0;">
+    • <strong>Honors&nbsp;(H)</strong> courses add <code>+0.30</code> to the final weighted GPA.<br>
+    • <strong>Advanced Placement&nbsp;(AP)</strong> courses add <code>+0.50</code>.<br>
+    • Tenth‑grade Level I (“Advanced”) courses receive no additional weighting.<br>
+    • Physical Education/Health are excluded from GPA. Glen Rock Middle & High School does not report class rank.
+  </p>
+
+  <!-- ——— keep the formula & example section that you already liked ——— -->
+  <!-- (your Σ[(Base + w) × Credits] equations and worked example) -->
+</section>
+
+
+  <!-- 2. Course‑level weighting -->
+  <table class="grade-scale">
+    <tr><th>Course Level</th><th>Add‑on (“w”)</th></tr>
+    <tr><td>AP</td><td>+0.50</td></tr>
+    <tr><td>Honors</td><td>+0.30</td></tr>
+    <tr><td>CP&nbsp;(Regular)</td><td>+0.00</td></tr>
+  </table>
+
+  <!-- 3. Formulae -->
+  <p style="margin:8px 0;">
+    <strong>Adjusted grade points for a single class:</strong><br>
+    <code>(Base&nbsp;GPA&nbsp;+&nbsp;w) × Credits</code>
+    &nbsp;&nbsp;where&nbsp;<code>w</code> is&nbsp;0.50 for AP, 0.30 for Honors, 0 for CP.
+  </p>
+
+  <p style="margin:8px 0;">
+    <strong>Per‑year GPA:</strong><br>
+    <code>Year GPA = Σ[(Base&nbsp;GPA&nbsp;+ w) × Credits] ÷ Σ(Credits)</code>
+  </p>
+
+  <p style="margin:8px 0;">
+    <strong>Cumulative GPA:</strong><br>
+    Apply the same weighted‑average formula across <em>all</em> years:
+    <code>Cumulative GPA = ΣYear Points ÷ ΣYear Credits</code>.
+  </p>
+
+  <!-- 4. Worked example showing an AP, an Honors, and a CP course -->
+  <h3>Example</h3>
+  <table class="example">
+    <tr><th>Course</th><th>Level</th><th>Credits</th><th>Letter</th><th>Calc</th><th>Grade Pts</th></tr>
+
+    <tr><td>AP Chemistry</td><td>AP</td><td>7</td><td>A‑</td>
+        <td>(3.7&nbsp;+&nbsp;0.5)&nbsp;×&nbsp;7</td><td>29.4</td></tr>
+
+    <tr><td>Honors English</td><td>Honors</td><td>5</td><td>B+</td>
+        <td>(3.3&nbsp;+&nbsp;0.3)&nbsp;×&nbsp;5</td><td>18.0</td></tr>
+
+    <tr><td>World History</td><td>CP</td><td>5</td><td>A</td>
+        <td>(4.0&nbsp;+&nbsp;0)&nbsp;×&nbsp;5</td><td>20.0</td></tr>
+
+    <tr class="tot"><td>Total</td><td>—</td><td>17</td><td>—</td><td>—</td><td>67.4</td></tr>
+    <tr class="gpa"><td colspan="6">Year&nbsp;GPA = 67.4 ÷ 17 = 3.96</td></tr>
+  </table>
+</section>
+<!-- ===================== END GPA EXPLAINER ====================== -->
+
+
   <script>
     const gradeToGPA = {
       "A+": 4.3, "A": 4.0, "A-": 3.7,
