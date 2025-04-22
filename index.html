@@ -191,14 +191,14 @@ function createRowHTML(course = "", grade = "", credits = "", type = "regular") 
         }
 
         if (yearCredits > 0) {
-          const yearGPA = (yearPoints / yearCredits).toFixed(2);
+          const yearGPA = (yearPoints / yearCredits).toFixed(4);
           summaryLines.push(`<strong>${year.charAt(0).toUpperCase() + year.slice(1)}:</strong> GPA = ${yearGPA}, Credits = ${yearCredits}`);
           totalPoints += yearPoints;
           totalCredits += yearCredits;
         }
       });
 
-      const finalGPA = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : "N/A";
+      const finalGPA = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(4) : "N/A";
       document.getElementById("result").textContent = `Your Weighted GPA is: ${finalGPA}`;
       document.getElementById("summary").innerHTML = summaryLines.join("<br>");
     });
