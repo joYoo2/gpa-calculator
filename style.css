@@ -6,7 +6,7 @@ body {
     max-width: 900px; /* Prevents content from stretching too wide */
     margin: auto; /* Centers content on page */
     padding: 40px; /* Inner spacing around all content */
-    background-color: #f1f1f1;
+    background-color: #f5f3f4;
 }
 
 /* Headers styling */
@@ -36,6 +36,7 @@ h1, h2 {
 .year-box {
     max-width: 100%;
     margin: 5px;
+    margin-top: 10px;
     box-sizing: border-box; /* Includes padding in width calculation */
     padding: 10px;
     padding-top: 35px;
@@ -59,8 +60,7 @@ h1, h2 {
     top: 0px;
     left: 0;
     width: 100%;
-    background-color: #003366;
-            color: white;
+    background-color: #e0e0e0;
     padding: 10px 16px;
     font-size: 16px;
     font-weight: bold;
