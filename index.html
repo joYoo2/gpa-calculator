@@ -8,7 +8,13 @@
     <body>
         <!-- Introduction Card -->
         <div class="card">
-            <h1>Glen Rock GPA Calculator</h1>
+            <h1 style="
+            background-color: #003366;
+            color: white;
+            padding: 10px 10px;
+              margin: -10px;
+              maring-bottom:10;
+          ">Glen Rock GPA Calculator</h1>
             <p>
                 Welcome to Joseph Yoo's GPA Calculator for Glen Rock High School. <br><br>
                 To begin, enter your final letter grade, the number of credits earned per course, and the course level.<br><br>
@@ -46,7 +52,16 @@
 
         <!-- Final Grade Calculator Section -->
         <div class="card">
-            <h2 style="font-size: 20px;">Final Grade Calculator</h2>
+            <h2 style="
+            background-color: #003366;
+            color: white;
+            padding: 10px 10px;
+              margin: -10px;
+              maring-bottom:10;
+
+            font-size: 25px;
+          ">Final Grade Calculator</h2>
+          <br>
             <!-- Checkboxes for AP & Semester -->
             <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
                 <label style="display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px;">
@@ -74,7 +89,13 @@
 
         <!-- How GPA is Calculated Info Card -->
         <div class="card">
-            <h2>How GPA is Calculated</h2>
+            <h2 style="
+            background-color: #003366;
+            color: white;
+            padding: 10px 10px;
+              margin: -10px;
+            font-size: 25px;
+          ">How GPA is Calculated</h2>
 
             <h3>GRADING SYSTEM</h3>
             <p>The Glen Rock grading system consists of thirteen letter grades: <strong>A+, A, A‑, B+, B, B‑, C+, C, C‑, D+, D, D‑, F</strong>.</p>
@@ -131,45 +152,97 @@
     <tr class="tot"><td>Total</td><td>—</td><td>17</td><td>—</td><td>—</td><td>67.4</td></tr>
     <tr class="gpa"><td colspan="6">Year GPA = 67.4 ÷ 17 = 3.96</td></tr>
   </table>
-<h2 style="margin-top: 40px;">How Final Grades Are Calculated</h2>
+  </div>
+  <div class="card">
+  <h2 style="
+  background-color: #003366;
+  color: white;
+  padding: 10px 10px;
+    margin: -10px;
+  font-size: 25px;
+">How Final Grades Are Determined</h2>
 
-<p>At Glen Rock High School, your final course grade is calculated based on a weighted average of your marking period grades and final exam score. The weights vary depending on course type (AP, CP, or semester).</p>
-
-<h3>Full-Year CP and Honors Courses</h3>
-<ul>
-  <li>Each Marking Period (MP1–MP4): 22.5%</li>
-  <li>Final Exam: 10%</li>
-</ul>
-<p><em>Final Grade = MP1 × 22.5% + MP2 × 22.5% + MP3 × 22.5% + MP4 × 22.5% + Final × 10%</em></p>
-
-<h3>Full-Year AP Courses</h3>
-<ul>
-  <li>Each Marking Period (MP1–MP4): 25%</li>
-  <li>No final exam grade is included.</li>
-</ul>
-<p><em>Final Grade = MP1 × 25% + MP2 × 25% + MP3 × 25% + MP4 × 25%</em></p>
-
-<h3>Semester Courses (CP/Honors/AP)</h3>
-<ul>
-  <li>Each Half: 45%</li>
-  <li>Final Exam: 10% (CP/Honors only)</li>
-</ul>
-<p><em>Final Grade = Half 1 × 45% + Half 2 × 45% + Final × 10%</em></p>
-<p><em>AP semester courses do not have a final exam. For those courses: Final Grade = Half 1 × 50% + Half 2 × 50%</em></p>
-
-<h3>Understanding Final Letter Assignment</h3>
-<p>After calculating the weighted average of your grades, the final result is matched to the closest letter grade using Glen Rock’s official scale. Though the school does not publish exact rounding cutoffs, the final letter grade is typically based on the GPA number that best represents the average performance.</p>
-
-<p>In practice, your GPA result is interpreted using the table below, and rounded to the nearest matching grade. Here are some illustrative examples:</p>
-
-<ul>
-  <li><strong>A, A, A+, A+</strong> → <strong>Final Grade: A+</strong></li>
-  <li><strong>A−, A+, A+, A+</strong> → <strong>Final Grade: A+</strong></li>
-  <li><strong>B+, A+, A+ (with final exam)</strong> → <strong>Final Grade: A</strong></li>
-</ul>
-
-<p>This process is built into the calculator above. You may try entering your own grades and weights to see how it rounds!</p>
-</section>
+  <p>
+    At Glen Rock High School, final course grades are determined by calculating a weighted average of 
+    <strong>Grade Point Average (GPA) equivalents</strong> assigned to letter grades earned during each marking period and, if applicable, the final exam.
+  </p>
+  
+  <h3>Step 1: Convert Percentages to Letter Grades</h3>
+  <p>
+    Each marking period grade and final exam (if applicable) is first converted to a letter grade based on the official percentage scale. 
+    For example, a percentage between 93 and 96 results in a grade of A. A percentage of 97 or above results in an A+.
+  </p>
+  
+  <h3>Step 2: Convert Letter Grades to GPA Values</h3>
+  <p>
+    The letter grade for each marking period is then assigned a GPA value according to the district’s conversion scale. 
+    For example, an A is equivalent to a GPA of 4.0, a B+ to 3.3, and so on.
+  </p>
+  
+  <h3>Step 3: Apply Course-Specific Weights</h3>
+  
+  <h4>Full-Year CP and Honors Courses</h4>
+  <ul>
+    <li>Marking Periods 1–4: 22.5% each</li>
+    <li>Final Exam: 10%</li>
+  </ul>
+  <p><em>Final GPA = MP1 × 22.5% + MP2 × 22.5% + MP3 × 22.5% + MP4 × 22.5% + Final Exam × 10%</em></p>
+  
+  <h4>Full-Year AP Courses</h4>
+  <ul>
+    <li>Marking Periods 1–4: 25% each</li>
+    <li>No final exam</li>
+  </ul>
+  <p><em>Final GPA = MP1 × 25% + MP2 × 25% + MP3 × 25% + MP4 × 25%</em></p>
+  
+  <h4>Semester CP/Honors Courses</h4>
+  <ul>
+    <li>Each Semester Half: 45%</li>
+    <li>Final Exam: 10%</li>
+  </ul>
+  <p><em>Final GPA = Half 1 × 45% + Half 2 × 45% + Final Exam × 10%</em></p>
+  
+  <h4>Semester AP Courses</h4>
+  <ul>
+    <li>Each Semester Half: 50%</li>
+    <li>No final exam</li>
+  </ul>
+  <p><em>Final GPA = Half 1 × 50% + Half 2 × 50%</em></p>
+  
+  <h3>Step 4: Assign Final Letter Grade</h3>
+  <p>
+    Once the weighted GPA is calculated, it is matched to a final letter grade using the official GPA conversion table below:
+  </p>
+  
+  <table class="letter-scale" style="width: auto; font-size: 13px; border-collapse: collapse; border: none; margin-left: 20px;">
+    <thead>
+      <tr>
+        <th>GPA Range</th>
+        <th>Final Letter Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>4.15 – 4.30</td><td>A+</td></tr>
+      <tr><td>3.85 – 4.14</td><td>A</td></tr>
+      <tr><td>3.50 – 3.84</td><td>A−</td></tr>
+      <tr><td>3.15 – 3.49</td><td>B+</td></tr>
+      <tr><td>2.85 – 3.14</td><td>B</td></tr>
+      <tr><td>2.50 – 2.84</td><td>B−</td></tr>
+      <tr><td>2.15 – 2.49</td><td>C+</td></tr>
+      <tr><td>1.85 – 2.14</td><td>C</td></tr>
+      <tr><td>1.50 – 1.84</td><td>C−</td></tr>
+      <tr><td>1.15 – 1.49</td><td>D+</td></tr>
+      <tr><td>0.85 – 1.14</td><td>D</td></tr>
+      <tr><td>0.50 – 0.84</td><td>D−</td></tr>
+      <tr><td>0.00 – 0.49</td><td>F</td></tr>
+    </tbody>
+  </table>
+  
+  <p>
+    The calculator above follows this official process. By inputting your marking period and final exam letter grades, it computes the corresponding GPA values using the correct course weights, then assigns a final letter grade according to the table above.
+  </p>
+</div>
+  </section>
             <!-- Rest of info text continues... -->
             <!-- (Note: I've abbreviated this section in my comments to save space) -->
             
