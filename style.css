@@ -2,11 +2,12 @@
 /* ============ BASE STYLES ============ */
 body {
     font-family: Arial, sans-serif;
-    margin: 40px; /* Creates overall page margin */
+    
+/* Creates overall page margin */
     max-width: 900px; /* Prevents content from stretching too wide */
     margin: auto; /* Centers content on page */
     padding: 40px; /* Inner spacing around all content */
-    background-color: #f5f3f4;
+
 }
 
 /* Headers styling */
@@ -36,7 +37,6 @@ h1, h2 {
 .year-box {
     max-width: 100%;
     margin: 5px;
-    margin-top: 10px;
     box-sizing: border-box; /* Includes padding in width calculation */
     padding: 10px;
     padding-top: 35px;
@@ -45,14 +45,18 @@ h1, h2 {
 }
 
 /* Desktop sizing for year boxes - makes them display side by side */
-@media (min-width: 732px) {
+@media (min-width: 770px) {
     .year-box {
         flex: 0 1 calc(50% - 30px); /* Two columns layout with spacing */
         min-width: 300px;
     }
+	body{
+margin: 20px; 
 }
-
-
+.card {
+    padding: 10px; 
+}
+}
 
 /* Header styling for each year section */
 .year-header {
@@ -60,7 +64,7 @@ h1, h2 {
     top: 0px;
     left: 0;
     width: 100%;
-    background-color: #e0e0e0;
+    background-color: rgb(255, 255, 255);
     padding: 10px 16px;
     font-size: 16px;
     font-weight: bold;
@@ -263,10 +267,4 @@ button[onclick*="remove"]:hover {
         width: 100%; /* Full width on small screens */
         max-width: none; /* Remove max-width constraint on small screens */
     }
-}
-
-.letter-scale td,
-    .letter-scale th {
-      padding: 2px 20px; /* adds vertical and horizontal spacing */
-
 }
