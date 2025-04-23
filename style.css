@@ -6,6 +6,7 @@ body {
     max-width: 900px; /* Prevents content from stretching too wide */
     margin: auto; /* Centers content on page */
     padding: 40px; /* Inner spacing around all content */
+    background-color: #f1f1f1;
 }
 
 /* Headers styling */
@@ -27,7 +28,7 @@ h1, h2 {
     padding: 20px; 
     border: 1px solid #ccc; /* Light gray border */
     margin-bottom: 30px; /* Space between cards */
-    background-color: transparent;
+    background-color: white;
     box-shadow: none;
 }
 
@@ -43,7 +44,7 @@ h1, h2 {
 }
 
 /* Desktop sizing for year boxes - makes them display side by side */
-@media (min-width: 700px) {
+@media (min-width: 732px) {
     .year-box {
         flex: 0 1 calc(50% - 30px); /* Two columns layout with spacing */
         min-width: 300px;

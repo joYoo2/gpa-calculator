@@ -224,7 +224,7 @@ function generateFinalGradeInputs() {
         const div = document.createElement("div");
         const value = previousValues[index] || "";
         div.innerHTML = `<div style="display: flex; align-items: center; min-width: 180px; gap: 5px;"><label style="white-space: nowrap; width: 80px;">${label}:</label><select style="flex: 1;">
-            <option value="">--</option>
+            <option value=""></option>
             ${["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"].map(opt => `<option value="${opt}" ${opt === value ? 'selected' : ''}>${opt}</option>`).join("")}
         </select></div>`;
         container.appendChild(div);
