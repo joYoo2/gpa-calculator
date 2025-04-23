@@ -1,0 +1,262 @@
+
+/* ============ BASE STYLES ============ */
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px; /* Creates overall page margin */
+    max-width: 900px; /* Prevents content from stretching too wide */
+    margin: auto; /* Centers content on page */
+    padding: 40px; /* Inner spacing around all content */
+}
+
+/* Headers styling */
+h1, h2 {
+    margin-top: 20px; /* Space above headers */
+}
+
+/* ============ CARD/CONTAINER STYLES ============ */
+/* Main container for year sections, uses flexbox for layout */
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap to next line */
+    gap: 10px; /* Space between year boxes */
+    justify-content: center; /* Centers year boxes */
+}
+
+/* Card styling - used for main content blocks */
+.card {
+    padding: 20px; 
+    border: 1px solid #ccc; /* Light gray border */
+    margin-bottom: 30px; /* Space between cards */
+    background-color: transparent;
+    box-shadow: none;
+}
+
+/* Year box containers */
+.year-box {
+    max-width: 100%;
+    margin: 5px;
+    box-sizing: border-box; /* Includes padding in width calculation */
+    padding: 10px;
+    padding-top: 35px;
+    background-color: #ffffff; /* White background for year boxes */
+    position: relative; /* Add this */
+}
+
+/* Desktop sizing for year boxes - makes them display side by side */
+@media (min-width: 700px) {
+    .year-box {
+        flex: 0 1 calc(50% - 30px); /* Two columns layout with spacing */
+        min-width: 300px;
+    }
+}
+
+/* Header styling for each year section */
+.year-header {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 10px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    box-sizing: border-box;
+    z-index: 2;
+    display: block;
+    text-align: left;
+    margin: 0;
+}
+
+/* Each year block container */
+.year-block {
+    background-color: #000000;
+    border: 2px solid #d0d0d0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    position: relative;
+    padding: 16px;
+    margin-top: 30px;
+    box-sizing: border-box;
+    max-width: 420px;
+    z-index: 0;
+}
+
+/* ============ TABLE STYLES ============ */
+table {
+    width: 100%; /* Makes tables fill their container */
+    margin-top: 10px;
+    margin-bottom: 8px;
+    border-collapse: collapse; /* Removes space between cells */
+    table-layout: auto; /* Allows columns to size based on content */
+    box-sizing: border-box;
+}
+
+/* ============ FORM ELEMENT STYLES ============ */
+/* Base input styling */
+input, select, button {
+    appearance: none; /* Removes browser default styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 13px;
+    padding: 4px 6px;
+    color: #333;
+    box-sizing: border-box;
+}
+
+/* Text and number input styling */
+input[type="text"], input[type="number"] {
+    height: 26px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 13px;
+    margin-right: 4px;
+    width: 100%;
+    max-width: 250px;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: textfield !important; /* Removes spinner arrows in Firefox */
+    background-image: none !important;
+}
+
+/* Remove spinner arrows from number inputs in Chrome */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Select dropdown styling */
+select {
+    height: 26px;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='10'%20height='5'%20viewBox='0%200%2010%205'%3E%3Cpath%20fill='%23666'%20d='M0%200l5%205%205-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 10px 5px;
+    padding-right: 20px; /* Makes room for dropdown arrow */
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #333;
+    border-radius: 50%; /* Makes checkboxes circular */
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+    vertical-align: middle;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #333; /* Filled when checked */
+    border-color: #333;
+}
+
+/* Button styling */
+button {
+    padding: 6px 12px;
+    font-size: 13px;
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    box-sizing: border-box;
+    height: 30px;
+    transition: background-color 0.2s; /* Smooth hover effect */
+}
+
+button:hover {
+    background-color: #f0f0f0; /* Light gray on hover */
+}
+
+/* Remove row button styling */
+button[onclick*="remove"] {
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: #333;
+    font-size: 10px;
+    padding: 0 4px;
+    height: 20px;
+    vertical-align: middle;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+button[onclick*="remove"]:hover {
+    color: red;
+    cursor: pointer;
+}
+
+/* ============ RESPONSIVE STYLES ============ */
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column; /* Stack year boxes vertically on mobile */
+    }
+    
+    table {
+        width: 100%;
+        margin-bottom: 10px;
+        border-collapse: collapse;
+        table-layout: auto;
+        box-sizing: border-box;
+    }
+    
+    input, select {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    button {
+        width: auto;
+        max-width: 140px;
+    }
+}
+
+/* ============ SUMMARY SECTION STYLES ============ */
+#summary {
+    margin-top: 0;
+    margin-bottom: 24px;
+    padding-left: 16px;
+    background: none;
+    border: none;
+}
+
+#result {
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+/* ============ FINAL GRADE SECTION STYLES ============ */
+#grade-inputs {
+    margin-top: 10px;
+    width: 30%;
+    
+}
+
+/* Add this to your existing CSS */
+
+
+/* For smaller screens, ensure it's wide enough */
+@media (max-width: 600px) {
+    button[onclick="calculateFinalGrade()"] {
+        width: 100%; /* Full width on small screens */
+        max-width: none; /* Remove max-width constraint on small screens */
+    }
+}
