@@ -251,7 +251,20 @@
             /* ============ FINAL GRADE SECTION STYLES ============ */
             #grade-inputs {
                 margin-top: 10px;
+                width: 30%;
+                
             }
+
+            /* Add this to your existing CSS */
+
+
+/* For smaller screens, ensure it's wide enough */
+@media (max-width: 600px) {
+    button[onclick="calculateFinalGrade()"] {
+        width: 100%; /* Full width on small screens */
+        max-width: none; /* Remove max-width constraint on small screens */
+    }
+}
         </style>
     </head>
     <body>
@@ -285,6 +298,7 @@
         <!-- Calculate Button -->
         <div style="margin-top: 8px;" id="calculate-container">
             <button id="calculate">Calculate GPA</button>
+            
         </div>
         
         <!-- Results Display -->
@@ -314,6 +328,7 @@
             
             <!-- Grade Input Fields -->
             <div id="grade-inputs"></div>
+            <br>
             <button onclick="calculateFinalGrade()">Calculate Final Grade</button>
             <p id="final-grade-result"></p>
         </div>
